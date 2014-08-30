@@ -70,9 +70,12 @@
 }
 
 - (IBAction)takePicture:(id)sender;
+-(IBAction)startTimer:(id)sender;
 - (IBAction)switchCameras:(id)sender;
 - (IBAction)handlePinchGesture:(UIGestureRecognizer *)sender;
 - (IBAction)toggleFaceDetection:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *camerabutton;
+- (IBAction)camerabuttonPressed:(id)sender;
 
 
 @end

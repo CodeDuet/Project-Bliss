@@ -51,6 +51,7 @@
 #import <AssertMacros.h>
 #import <AssetsLibrary/AssetsLibrary.h>
 
+
 NSInteger count = 0;
 NSInteger seconds = 10;
 
@@ -576,9 +577,9 @@ bail:
 - (void)drawFaceBoxesForFeatures:(NSArray *)features forVideoBox:(CGRect)clap orientation:(UIDeviceOrientation)orientation
 {
 	NSArray *sublayers = [NSArray arrayWithArray:[previewLayer sublayers]];
-	NSInteger sublayersCount = [sublayers count], currentSublayer = 0;
-	NSInteger featuresCount = [features count], currentFeature = 0;
-	
+NSInteger sublayersCount = [sublayers count], currentSublayer = 0;
+NSInteger featuresCount = [features count], currentFeature = 0;
+	//NSInteger featuresCount = [features count]; //Removed Current Feature
 	[CATransaction begin];
 	[CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
 	
@@ -592,7 +593,9 @@ bail:
 		[CATransaction commit];
 		return; // early bail.
 	}
-		
+  
+    
+
 	CGSize parentFrameSize = [previewView frame].size;
 	NSString *gravity = [previewLayer videoGravity];
 	BOOL isMirrored = [previewLayer isMirrored];
@@ -668,6 +671,7 @@ bail:
 	}
 	
 	[CATransaction commit];
+ 
 }
 
 - (void)captureOutput:(AVCaptureOutput *)captureOutput didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer fromConnection:(AVCaptureConnection *)connection
@@ -734,6 +738,7 @@ bail:
 	
 	dispatch_async(dispatch_get_main_queue(), ^(void) {
 		[self drawFaceBoxesForFeatures:features forVideoBox:clap orientation:curDeviceOrientation];
+        
 	});
 }
 
@@ -864,9 +869,50 @@ bail:
     if (seconds == 0) {
         [timer invalidate];
         [timerLabel setHidden:TRUE];
+        [self takePicture:self];
+        [self showMessage];
     }
 }
 
+-(IBAction)startTimer:(id)sender
+{
+    [timerLabel setHidden:FALSE];
+    // 1
+    if (seconds == 0)
+    {
+        seconds = 10;
+    }
+    
+    // 2
+    timerLabel.text = [NSString stringWithFormat:@"%li", (long)seconds];
+    
+    // 3
+    timer = [NSTimer scheduledTimerWithTimeInterval:1.0f
+                                             target:self
+                                           selector:@selector(subtractTime)
+                                           userInfo:nil
+                                            repeats:YES];
+}
+
+- (void)showMessage{
+    UIAlertView *alertmsg = [[UIAlertView alloc] initWithTitle:@"Finished!"
+                                                       message:@"Thank you. The Picture has been saved."
+                                                      delegate:self
+                                             cancelButtonTitle:@"OK"
+                                             otherButtonTitles:@"Post on Instagram", nil];
+    [alertmsg show];
+
+
+}
+
+- (void)alertView:(UIAlertView *)theAlert clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1)
+    {
+    NSLog(@"The %@ button was tapped.", [theAlert buttonTitleAtIndex:buttonIndex]);
+    }
+}
+/*
 - (void)startTimer {
     // 1
     if (seconds == 0)
@@ -884,5 +930,9 @@ bail:
                                            userInfo:nil
                                             repeats:YES];
 }
+*/
 
+
+- (IBAction)camerabuttonPressed:(id)sender {
+}
 @end

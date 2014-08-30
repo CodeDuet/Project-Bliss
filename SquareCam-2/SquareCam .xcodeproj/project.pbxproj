@@ -27,6 +27,8 @@
 		2BA4851713F1E6DB000BABB3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA4851313F1E6DB000BABB3 /* main.m */; };
 		2BA4851813F1E6DB000BABB3 /* squarePNG.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BA4851513F1E6DB000BABB3 /* squarePNG.png */; };
 		2BA4851A13F1EC39000BABB3 /* ReadMe.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2BA4851913F1EC39000BABB3 /* ReadMe.txt */; };
+		3570C78919B17FED005C7D07 /* camerabutton.png in Resources */ = {isa = PBXBuildFile; fileRef = 3570C78819B17FED005C7D07 /* camerabutton.png */; };
+		3570C78B19B221E8005C7D07 /* camerabutton_highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = 3570C78A19B221E8005C7D07 /* camerabutton_highlighted.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +55,8 @@
 		2BA4851413F1E6DB000BABB3 /* Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Prefix.pch; path = SquareCam/Prefix.pch; sourceTree = SOURCE_ROOT; };
 		2BA4851513F1E6DB000BABB3 /* squarePNG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = squarePNG.png; path = SquareCam/squarePNG.png; sourceTree = SOURCE_ROOT; };
 		2BA4851913F1EC39000BABB3 /* ReadMe.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ReadMe.txt; sourceTree = "<group>"; };
+		3570C78819B17FED005C7D07 /* camerabutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = camerabutton.png; path = SquareCam/camerabutton.png; sourceTree = SOURCE_ROOT; };
+		3570C78A19B221E8005C7D07 /* camerabutton_highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = camerabutton_highlighted.png; path = SquareCam/camerabutton_highlighted.png; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +138,8 @@
 				2BA4851313F1E6DB000BABB3 /* main.m */,
 				2BA4851413F1E6DB000BABB3 /* Prefix.pch */,
 				2BA4851513F1E6DB000BABB3 /* squarePNG.png */,
+				3570C78819B17FED005C7D07 /* camerabutton.png */,
+				3570C78A19B221E8005C7D07 /* camerabutton_highlighted.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -165,6 +171,11 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0510;
+				TargetAttributes = {
+					1B867FD7139D4AD300AD6B47 = {
+						DevelopmentTeam = 6BX82L34Z7;
+					};
+				};
 			};
 			buildConfigurationList = 1B867FD2139D4AD300AD6B47 /* Build configuration list for PBXProject "SquareCam " */;
 			compatibilityVersion = "Xcode 3.2";
@@ -188,8 +199,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3570C78919B17FED005C7D07 /* camerabutton.png in Resources */,
 				1B867FF0139D4AD300AD6B47 /* MainStoryboard_iPhone.storyboard in Resources */,
 				1B867FF3139D4AD300AD6B47 /* MainStoryboard_iPad.storyboard in Resources */,
+				3570C78B19B221E8005C7D07 /* camerabutton_highlighted.png in Resources */,
 				2BA4851013F1E6CC000BABB3 /* MainStoryboard_iPad.storyboard in Resources */,
 				2BA4851113F1E6CC000BABB3 /* MainStoryboard_iPhone.storyboard in Resources */,
 				2BA4851813F1E6DB000BABB3 /* squarePNG.png in Resources */,
