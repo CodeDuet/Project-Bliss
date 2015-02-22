@@ -51,9 +51,12 @@
 #import <AssertMacros.h>
 #import <AssetsLibrary/AssetsLibrary.h>
 
+//NSInteger count = 0;
+//NSInteger seconds = 10;
 
-NSInteger count = 0;
-NSInteger seconds = 10;
+BOOL timerIsRunning = NO;
+BOOL timerLookHere = NO;
+BOOL timerSelfie= NO;
 
 
 
@@ -184,6 +187,7 @@ static CGContextRef CreateCGBitmapContextForSize(CGSize size)
 - (void)setupAVCapture;
 - (void)teardownAVCapture;
 - (void)drawFaceBoxesForFeatures:(NSArray *)features forVideoBox:(CGRect)clap orientation:(UIDeviceOrientation)orientation;
+@property (nonatomic, retain) UIDocumentInteractionController *dic;
 @end
 
 @implementation SquareCamViewController
@@ -476,6 +480,7 @@ bail:
 						OSStatus err = CreateCGImageFromCVPixelBuffer(CMSampleBufferGetImageBuffer(imageDataSampleBuffer), &srcImage);
 						check(!err);
 						
+                        // Put the square image on the photo then save it to the camera roll
                         CGImageRef cgImageResult = [self newSquareOverlayedImageForFeatures:features 
 																					   inCGImage:srcImage 
 																				 withOrientation:curDeviceOrientation 
@@ -486,6 +491,7 @@ bail:
 						CFDictionaryRef attachments = CMCopyDictionaryOfAttachments(kCFAllocatorDefault, 
 																					imageDataSampleBuffer, 
 																					kCMAttachmentMode_ShouldPropagate);
+                        //Save image to camera roll
 						[self writeCGImageToCameraRoll:cgImageResult withMetadata:(__bridge id)attachments];
 						if (attachments)
 							CFRelease(attachments);
@@ -497,11 +503,14 @@ bail:
 				}
 				else {
 					// trivial simple JPEG case
+                    //Get JPEG info
 					NSData *jpegData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageDataSampleBuffer];
+                    //NSLog(@"writing \"%@\" to photos album", jpegData);
 					CFDictionaryRef attachments = CMCopyDictionaryOfAttachments(kCFAllocatorDefault, 
 																				imageDataSampleBuffer, 
 																				kCMAttachmentMode_ShouldPropagate);
 					ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
+                    //NSLog(@"writing \"%@\" attachments", attachments);
 					[library writeImageDataToSavedPhotosAlbum:jpegData metadata:(__bridge id)attachments completionBlock:^(NSURL *assetURL, NSError *error) {
 						if (error) {
 							[self displayErrorOnMainQueue:error withMessage:@"Save to camera roll failed"];
@@ -674,6 +683,7 @@ NSInteger featuresCount = [features count], currentFeature = 0;
  
 }
 
+
 - (void)captureOutput:(AVCaptureOutput *)captureOutput didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer fromConnection:(AVCaptureConnection *)connection
 {	
 	// got an image
@@ -784,11 +794,17 @@ NSInteger featuresCount = [features count], currentFeature = 0;
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
 	[self setupAVCapture];
+    [self switchCameras:self];
 	square = [UIImage imageNamed:@"squarePNG"];
 	NSDictionary *detectorOptions = [[NSDictionary alloc] initWithObjectsAndKeys:CIDetectorAccuracyLow, CIDetectorAccuracy, nil];
 	faceDetector = [CIDetector detectorOfType:CIDetectorTypeFace context:nil options:detectorOptions];
     [timer invalidate];
     [timerLabel setHidden:TRUE];
+    [lookButton setHidden:TRUE];
+    [selfieButton setHidden:TRUE];
+    [doneButton setHidden:TRUE];
+    [taptoStartButton setHidden:FALSE];
+    
 }
 
 - (void)viewDidUnload
@@ -822,6 +838,7 @@ NSInteger featuresCount = [features count], currentFeature = 0;
 {
     // Return YES for supported orientations
 	return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    //return (interfaceOrientation == UIInterfaceOrientationLandscapeRight);
 }
 
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
@@ -859,29 +876,44 @@ NSInteger featuresCount = [features count], currentFeature = 0;
 		[CATransaction commit];
 	}
 }
-
 - (void)subtractTime {
     // 1
     seconds--;
-    timerLabel.text = [NSString stringWithFormat:@"%li",(long)seconds];
+    timerLabel.text= [NSString stringWithFormat:@"%li",(long)seconds];
+    //NSLog(@"Seconds:@%li",(long)seconds);
     
     // 2
     if (seconds == 0) {
         [timer invalidate];
+        timer = nil;
         [timerLabel setHidden:TRUE];
         [self takePicture:self];
-        [self showMessage];
+        [self takePicture:self];
+    
+        //Show message
+        //[self showMessage];
+        //[taptoStartButton setHidden:FALSE];
+        
+        [self endTimer:self];
+        timerIsRunning = NO;
+        
+        
     }
 }
 
 -(IBAction)startTimer:(id)sender
 {
+    // [_camerabutton setHidden:TRUE];
     [timerLabel setHidden:FALSE];
+    timerIsRunning = YES;
+    
     // 1
-    if (seconds == 0)
-    {
-        seconds = 10;
-    }
+    seconds = 3;
+    /*
+     if (seconds == 0)
+     {
+     seconds = 10;
+     }*/
     
     // 2
     timerLabel.text = [NSString stringWithFormat:@"%li", (long)seconds];
@@ -892,15 +924,89 @@ NSInteger featuresCount = [features count], currentFeature = 0;
                                            selector:@selector(subtractTime)
                                            userInfo:nil
                                             repeats:YES];
+    
+}
+
+- (void)endCounter {
+    // 1
+    seconds--;
+    [doneButton setHidden:FALSE];
+    // 2
+    if (seconds == 0) {
+        [timer invalidate];
+        timer = nil;
+        
+       [doneButton setHidden:TRUE];
+       [taptoStartButton setHidden:FALSE];
+        timerIsRunning = NO;
+        
+        
+    }
+}
+-(IBAction)endTimer:(id)sender
+{
+    // [_camerabutton setHidden:TRUE];
+    [timerLabel setHidden:TRUE];
+    timerIsRunning = YES;
+    
+    // 1
+    seconds = 6;
+  
+    
+    // 3
+    timer = [NSTimer scheduledTimerWithTimeInterval:1.0f
+                                             target:self
+                                           selector:@selector(endCounter)
+                                           userInfo:nil
+                                            repeats:YES];
+    
+}
+
+- (void)simpleCounter2 {
+    // 1
+    seconds--;
+    
+    //NSLog(@"Seconds:@%li",(long)seconds);
+    
+    // 2
+    if (seconds == 0) {
+        [timer invalidate];
+        timer = nil;
+        
+        [timerLabel setHidden:TRUE];
+        [selfieButton setHidden:TRUE];
+        [self startTimer:self];
+        timerIsRunning = NO;
+        
+    }
+}
+-(IBAction)simpleTimer2:(id)sender
+{
+    // [_camerabutton setHidden:TRUE];
+    [selfieButton setHidden:FALSE];
+    [timerLabel setHidden:TRUE];
+    timerIsRunning = YES;
+    
+    // 1
+    seconds = 6;
+    
+    // 3
+    timer = [NSTimer scheduledTimerWithTimeInterval:1.0f
+                                             target:self
+                                           selector:@selector(simpleCounter2)
+                                           userInfo:nil
+                                            repeats:YES];
+    
 }
 
 - (void)showMessage{
     UIAlertView *alertmsg = [[UIAlertView alloc] initWithTitle:@"Finished!"
-                                                       message:@"Thank you. The Picture has been saved."
+                                                       message:@"Do you want to print your photo?"
                                                       delegate:self
                                              cancelButtonTitle:@"OK"
                                              otherButtonTitles:@"Post on Instagram", nil];
     [alertmsg show];
+    
 
 
 }
@@ -912,27 +1018,68 @@ NSInteger featuresCount = [features count], currentFeature = 0;
     NSLog(@"The %@ button was tapped.", [theAlert buttonTitleAtIndex:buttonIndex]);
     }
 }
-/*
-- (void)startTimer {
+
+- (void)simpleCounter1 {
     // 1
-    if (seconds == 0)
-    {
-        seconds = 10;
-    }
+    seconds--;
+    timerLabel.text= [NSString stringWithFormat:@"%li",(long)seconds];
     
     // 2
-  timerLabel.text = [NSString stringWithFormat:@"%li", (long)seconds];
+    if (timerIsRunning == YES &&  seconds ==0){
+
+        seconds += 4;
+        [timerLabel setHidden:TRUE];
+        timerIsRunning = NO;
+    }
+    //3
+    else if (seconds ==0 && timerIsRunning == NO) {
+        [timer invalidate];
+        timer = nil;
+        [timerLabel setHidden:TRUE];
+        [lookButton setHidden:TRUE];
+        [selfieButton setHidden:FALSE];
+        timerIsRunning = NO;
+        [self simpleTimer2:self];
+    }
+}
+
+-(IBAction)simpleTimer1:(id)sender
+{
+    // [_camerabutton setHidden:TRUE];
+    [lookButton setHidden:FALSE];
+    [taptoStartButton setHidden:TRUE];
+    [timerLabel setHidden:FALSE];
+    timerIsRunning = YES;
+    
+    // 1
+    seconds = 5;
+    /*
+     if (seconds == 0)
+     {
+     seconds = 10;
+     }*/
+    
+    // 2
+    timerLabel.text = [NSString stringWithFormat:@"%li", (long)seconds];
     
     // 3
     timer = [NSTimer scheduledTimerWithTimeInterval:1.0f
                                              target:self
-                                           selector:@selector(subtractTime)
+                                           selector:@selector(simpleCounter1)
                                            userInfo:nil
                                             repeats:YES];
+    
 }
-*/
 
 
 - (IBAction)camerabuttonPressed:(id)sender {
+    
+    //[self startTimer:self];
+    
+}
+
+- (IBAction)startWorkflow:(id)sender{
+    [self simpleTimer1:self];
+    
 }
 @end

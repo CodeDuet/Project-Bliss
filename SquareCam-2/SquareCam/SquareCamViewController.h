@@ -49,7 +49,7 @@
 #import <AVFoundation/AVFoundation.h>
 @class CIDetector;
 
-@interface SquareCamViewController : UIViewController <UIGestureRecognizerDelegate, AVCaptureVideoDataOutputSampleBufferDelegate>
+@interface SquareCamViewController : UIViewController <UIGestureRecognizerDelegate, AVCaptureVideoDataOutputSampleBufferDelegate,UIImagePickerControllerDelegate, UIDocumentInteractionControllerDelegate>
 {
 	IBOutlet UIView *previewView;
 	IBOutlet UISegmentedControl *camerasControl;
@@ -64,18 +64,46 @@
 	CIDetector *faceDetector;
 	CGFloat beginGestureScale;
 	CGFloat effectiveScale;
-    
+    BOOL timerIsRunning;
+    NSInteger count;
+    NSInteger seconds;
     NSTimer *timer;
+    NSTimer *delayphoto;
     IBOutlet UILabel *timerLabel;
+    __weak IBOutlet UIButton *lookButton;
+    __weak IBOutlet UIButton *doneButton;
+    
+    __weak IBOutlet UIButton *taptoStartButton;
+    __weak IBOutlet UIButton *selfieButton;
+    
 }
 
+
 - (IBAction)takePicture:(id)sender;
+- (IBAction)startWorkflow:(id)sender;
 -(IBAction)startTimer:(id)sender;
 - (IBAction)switchCameras:(id)sender;
 - (IBAction)handlePinchGesture:(UIGestureRecognizer *)sender;
 - (IBAction)toggleFaceDetection:(id)sender;
 @property (weak, nonatomic) IBOutlet UIButton *camerabutton;
 - (IBAction)camerabuttonPressed:(id)sender;
+- (void)simpleCounter1;
+- (void)simpleCounter2;
+- (void)endCounter;
+-(IBAction)simpleTimer1:(id)sender;
+-(IBAction)simpleTimer2:(id)sender;
+-(IBAction)endTimer:(id)sender;
+
+/*
+ [timerLabel setHidden:TRUE];
+ [lookButton setHidden:TRUE];
+ [selfieButton setHidden:TRUE];
+ [doneButton setHidden:TRUE];
+ [taptoStartButton setHidden:FALSE];
+ */
+
+
+
 
 
 @end
