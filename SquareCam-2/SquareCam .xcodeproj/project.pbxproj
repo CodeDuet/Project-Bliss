@@ -32,6 +32,11 @@
 		355BD0471A99A2F700F64ADA /* startButton3.png in Resources */ = {isa = PBXBuildFile; fileRef = 355BD0461A99A2F700F64ADA /* startButton3.png */; };
 		355BD0491A99A3CC00F64ADA /* lookhere2.png in Resources */ = {isa = PBXBuildFile; fileRef = 355BD0481A99A3CC00F64ADA /* lookhere2.png */; };
 		355BD04B1A99A3DC00F64ADA /* selfie2.png in Resources */ = {isa = PBXBuildFile; fileRef = 355BD04A1A99A3DC00F64ADA /* selfie2.png */; };
+		355BD04D1A9A27AC00F64ADA /* NMSSH.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 355BD04C1A9A27AC00F64ADA /* NMSSH.framework */; };
+		355BD04F1A9A27E400F64ADA /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 355BD04E1A9A27E400F64ADA /* libz.dylib */; };
+		355BD0511A9A280900F64ADA /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 355BD0501A9A280900F64ADA /* CFNetwork.framework */; };
+		355BD05A1A9A3C0B00F64ADA /* NMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 355BD0591A9A3C0B00F64ADA /* NMViewController.m */; };
+		355BD05C1A9ABB3800F64ADA /* photobooth_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 355BD05B1A9ABB3800F64ADA /* photobooth_logo.png */; };
 		3570C78919B17FED005C7D07 /* camerabutton.png in Resources */ = {isa = PBXBuildFile; fileRef = 3570C78819B17FED005C7D07 /* camerabutton.png */; };
 		3570C78B19B221E8005C7D07 /* camerabutton_highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = 3570C78A19B221E8005C7D07 /* camerabutton_highlighted.png */; };
 		35AFED571A6CA0FE001E6229 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35AFED561A6CA0FE001E6229 /* MediaPlayer.framework */; };
@@ -66,6 +71,12 @@
 		355BD0461A99A2F700F64ADA /* startButton3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = startButton3.png; sourceTree = SOURCE_ROOT; };
 		355BD0481A99A3CC00F64ADA /* lookhere2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lookhere2.png; sourceTree = SOURCE_ROOT; };
 		355BD04A1A99A3DC00F64ADA /* selfie2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = selfie2.png; sourceTree = SOURCE_ROOT; };
+		355BD04C1A9A27AC00F64ADA /* NMSSH.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = NMSSH.framework; sourceTree = "<group>"; };
+		355BD04E1A9A27E400F64ADA /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		355BD0501A9A280900F64ADA /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		355BD0581A9A3C0B00F64ADA /* NMViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMViewController.h; path = SquareCam/NMViewController.h; sourceTree = SOURCE_ROOT; };
+		355BD0591A9A3C0B00F64ADA /* NMViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMViewController.m; path = SquareCam/NMViewController.m; sourceTree = SOURCE_ROOT; };
+		355BD05B1A9ABB3800F64ADA /* photobooth_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = photobooth_logo.png; sourceTree = SOURCE_ROOT; };
 		3570C78819B17FED005C7D07 /* camerabutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = camerabutton.png; path = SquareCam/camerabutton.png; sourceTree = SOURCE_ROOT; };
 		3570C78A19B221E8005C7D07 /* camerabutton_highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = camerabutton_highlighted.png; path = SquareCam/camerabutton_highlighted.png; sourceTree = SOURCE_ROOT; };
 		35AFED561A6CA0FE001E6229 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
@@ -76,6 +87,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				355BD0511A9A280900F64ADA /* CFNetwork.framework in Frameworks */,
+				355BD04F1A9A27E400F64ADA /* libz.dylib in Frameworks */,
+				355BD04D1A9A27AC00F64ADA /* NMSSH.framework in Frameworks */,
 				35AFED571A6CA0FE001E6229 /* MediaPlayer.framework in Frameworks */,
 				1B3C9A34139D4EAA0042676B /* ImageIO.framework in Frameworks */,
 				1B3C9A32139D4E740042676B /* QuartzCore.framework in Frameworks */,
@@ -115,6 +129,9 @@
 		1B867FDB139D4AD300AD6B47 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				355BD0501A9A280900F64ADA /* CFNetwork.framework */,
+				355BD04E1A9A27E400F64ADA /* libz.dylib */,
+				355BD04C1A9A27AC00F64ADA /* NMSSH.framework */,
 				35AFED561A6CA0FE001E6229 /* MediaPlayer.framework */,
 				1B3C9A33139D4EAA0042676B /* ImageIO.framework */,
 				1B3C9A31139D4E740042676B /* QuartzCore.framework */,
@@ -133,6 +150,8 @@
 		1B867FE2139D4AD300AD6B47 /* SquareCam */ = {
 			isa = PBXGroup;
 			children = (
+				355BD0581A9A3C0B00F64ADA /* NMViewController.h */,
+				355BD0591A9A3C0B00F64ADA /* NMViewController.m */,
 				2BA4850313F1E6AA000BABB3 /* SquareCamAppDelegate.h */,
 				2BA4850413F1E6AA000BABB3 /* SquareCamAppDelegate.m */,
 				2BA4850513F1E6AA000BABB3 /* SquareCamViewController.h */,
@@ -148,6 +167,7 @@
 		1B867FE3139D4AD300AD6B47 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				355BD05B1A9ABB3800F64ADA /* photobooth_logo.png */,
 				355BD04A1A99A3DC00F64ADA /* selfie2.png */,
 				355BD03E1A992C2C00F64ADA /* Done.png */,
 				355BD0481A99A3CC00F64ADA /* lookhere2.png */,
@@ -228,6 +248,7 @@
 				355BD04B1A99A3DC00F64ADA /* selfie2.png in Resources */,
 				355BD03F1A992C2C00F64ADA /* Done.png in Resources */,
 				2BA4851813F1E6DB000BABB3 /* squarePNG.png in Resources */,
+				355BD05C1A9ABB3800F64ADA /* photobooth_logo.png in Resources */,
 				355BD0471A99A2F700F64ADA /* startButton3.png in Resources */,
 				2BA4851A13F1EC39000BABB3 /* ReadMe.txt in Resources */,
 				2B0EF004170E3E3A008EDA06 /* Default-568h@2x.png in Resources */,
@@ -245,6 +266,7 @@
 				2BA4850713F1E6AA000BABB3 /* SquareCamAppDelegate.m in Sources */,
 				2BA4851713F1E6DB000BABB3 /* main.m in Sources */,
 				2B0EF002170E3E27008EDA06 /* SquareCamViewController.m in Sources */,
+				355BD05A1A9A3C0B00F64ADA /* NMViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -367,6 +389,10 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = SquareCam/Prefix.pch;
 				INFOPLIST_FILE = SquareCam/Info.plist;
@@ -381,6 +407,10 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = SquareCam/Prefix.pch;
 				INFOPLIST_FILE = SquareCam/Info.plist;

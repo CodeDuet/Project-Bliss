@@ -47,6 +47,7 @@
 
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
+#import <NMSSH/NMSSH.h>
 @class CIDetector;
 
 @interface SquareCamViewController : UIViewController <UIGestureRecognizerDelegate, AVCaptureVideoDataOutputSampleBufferDelegate,UIImagePickerControllerDelegate, UIDocumentInteractionControllerDelegate>
@@ -69,6 +70,9 @@
     NSInteger seconds;
     NSTimer *timer;
     NSTimer *delayphoto;
+ 
+    
+    
     IBOutlet UILabel *timerLabel;
     __weak IBOutlet UIButton *lookButton;
     __weak IBOutlet UIButton *doneButton;
@@ -76,9 +80,14 @@
     __weak IBOutlet UIButton *taptoStartButton;
     __weak IBOutlet UIButton *selfieButton;
     
+    
 }
 
-
+@property (nonatomic, strong) NSString *host;
+@property (nonatomic, strong) NSString *username;
+@property (nonatomic, strong) NSString *password;
+@property (nonatomic) IBOutlet UITextView *textView;
+- (IBAction)connectToRaspi:(id)sender;
 - (IBAction)takePicture:(id)sender;
 - (IBAction)startWorkflow:(id)sender;
 -(IBAction)startTimer:(id)sender;

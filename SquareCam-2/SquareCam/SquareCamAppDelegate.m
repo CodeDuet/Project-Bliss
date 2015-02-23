@@ -56,6 +56,12 @@
     // Override point for customization after application launch.
     [self.window makeKeyAndVisible];
     
+    //Setup defaults for login
+    [[NSUserDefaults standardUserDefaults] registerDefaults:@{ @"host": @"",
+                                                               @"username": @"",
+                                                               @"auth": @(0) }];
+
+    
     return YES;
 }
 

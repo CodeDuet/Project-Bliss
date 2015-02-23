@@ -47,7 +47,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SquareCamAppDelegate : UIResponder <UIApplicationDelegate>
+@interface SquareCamAppDelegate : UIResponder <UIApplicationDelegate,UITextFieldDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 

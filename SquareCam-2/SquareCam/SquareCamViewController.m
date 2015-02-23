@@ -50,6 +50,7 @@
 #import <ImageIO/ImageIO.h>
 #import <AssertMacros.h>
 #import <AssetsLibrary/AssetsLibrary.h>
+#import "NMViewController.h"
 
 //NSInteger count = 0;
 //NSInteger seconds = 10;
@@ -57,7 +58,7 @@
 BOOL timerIsRunning = NO;
 BOOL timerLookHere = NO;
 BOOL timerSelfie= NO;
-
+NMSSHSession *session;
 
 
 #pragma mark-
@@ -795,6 +796,7 @@ NSInteger featuresCount = [features count], currentFeature = 0;
 	// Do any additional setup after loading the view, typically from a nib.
 	[self setupAVCapture];
     [self switchCameras:self];
+    [self connectToRaspi:self];
 	square = [UIImage imageNamed:@"squarePNG"];
 	NSDictionary *detectorOptions = [[NSDictionary alloc] initWithObjectsAndKeys:CIDetectorAccuracyLow, CIDetectorAccuracy, nil];
 	faceDetector = [CIDetector detectorOfType:CIDetectorTypeFace context:nil options:detectorOptions];
@@ -849,6 +851,34 @@ NSInteger featuresCount = [features count], currentFeature = 0;
 	return YES;
 }
 
+- (IBAction)connectToRaspi:(id)sender{
+    session = [NMSSHSession connectToHost:self.host
+                                           withUsername:self.username];
+    
+    [session authenticateByPassword:_password];
+    
+    if (session.isAuthorized) {
+        UIAlertView *alertSuccess = [[UIAlertView alloc] initWithTitle:@"Authentication succeeded!"
+                                                               message:@"Connection was successful."
+                                                              delegate:Nil
+                                                     cancelButtonTitle:@"OK"
+                                                     otherButtonTitles:nil];
+        [alertSuccess show];
+        
+        NSLog (@"Authenticaton Succeeded");
+
+    }//end if
+    else{
+        UIAlertView *alertError = [[UIAlertView alloc] initWithTitle:@"Error: Authentican Failed"
+                                                             message:@"Check user and password information. Try again."
+                                                            delegate:Nil
+                                                   cancelButtonTitle:@"OK"
+                                                   otherButtonTitles:nil];
+        [alertError show];
+
+    }
+}
+
 // scale image depending on users pinch gesture
 - (IBAction)handlePinchGesture:(UIPinchGestureRecognizer *)recognizer
 {
@@ -900,6 +930,8 @@ NSInteger featuresCount = [features count], currentFeature = 0;
         
     }
 }
+
+
 
 -(IBAction)startTimer:(id)sender
 {
@@ -1019,6 +1051,8 @@ NSInteger featuresCount = [features count], currentFeature = 0;
     }
 }
 
+
+
 - (void)simpleCounter1 {
     // 1
     seconds--;
@@ -1027,9 +1061,14 @@ NSInteger featuresCount = [features count], currentFeature = 0;
     // 2
     if (timerIsRunning == YES &&  seconds ==0){
 
-        seconds += 4;
+        seconds += 6;
         [timerLabel setHidden:TRUE];
         timerIsRunning = NO;
+        /*
+        NMSSHSession *session;
+        NSError *error = nil;
+        NSString *response = [session.channel execute:@"python /home/pi/photobooth/scripts/takePic.py" error:&error];
+        NSLog(@"List of my sites: %@", response);*/
     }
     //3
     else if (seconds ==0 && timerIsRunning == NO) {
