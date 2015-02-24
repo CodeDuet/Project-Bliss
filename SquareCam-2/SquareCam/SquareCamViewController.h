@@ -87,6 +87,7 @@
 @property (nonatomic, strong) NSString *username;
 @property (nonatomic, strong) NSString *password;
 @property (nonatomic) IBOutlet UITextView *textView;
+- (IBAction)takeDSLRPic:(id)sender;
 - (IBAction)connectToRaspi:(id)sender;
 - (IBAction)takePicture:(id)sender;
 - (IBAction)startWorkflow:(id)sender;

@@ -424,7 +424,52 @@ bail:
 		[alertView show];
 	});
 }
+- (IBAction)takeDSLRPic:(id)sender{
 
+   dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+    if (!session.isConnected) {
+           [session authenticateByPassword:@"pass"];
+           NSLog(@"We lost the session. Trying again!");
+           if (session.isAuthorized) {
+               NSLog(@"Authentication succeeded");
+           }
+       }
+     NSError *error = nil;
+     NSNumber* number = [NSNumber numberWithInt:3];
+     //Do EXTREME PROCESSING!!!
+     [session.channel execute:@"python /home/pi/photobooth/scripts/takePic.py" error:&error timeout:number];
+
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSLog(@"Photos are done!");
+        });
+    });
+    //SAVE GOOD CODE
+    /*
+     if (!session.isConnected) {
+     [session authenticateByPassword:@"pass"];
+     NSLog(@"We lost the session. Trying again!");
+     if (session.isAuthorized) {
+     NSLog(@"Authentication succeeded");
+     }
+     }
+     
+     NSError *error = nil;
+     NSNumber* number = [NSNumber numberWithInt:0];
+     [session.channel execute:@"python /home/pi/photobooth/scripts/takePic.py" error:&error timeout:number];
+
+     */
+   // [session.channel execute:@"python /home/pi/photobooth/scripts/takePic.py" error:&error timeout:number];
+   // NSString *commandToDSLR = [session.channel execute:@"python /home/pi/photobooth/scripts/takePic.py" error:&error];
+    //BOOL success = [session.channel execute:@"python /home/pi/photobooth/scripts/takePic.py" error:&error];
+    /*
+    if (commandToDSLR) {
+        NSLog(@"Photos taken!");
+    }
+    else{
+    NSLog(@"Houston we have a problem!");
+    }*/
+    
+}
 // main action method to take a still image -- if face detection has been turned on and a face has been detected
 // the square overlay will be composited on top of the captured image and saved to the camera roll
 - (IBAction)takePicture:(id)sender
@@ -1064,11 +1109,9 @@ NSInteger featuresCount = [features count], currentFeature = 0;
         seconds += 6;
         [timerLabel setHidden:TRUE];
         timerIsRunning = NO;
-        /*
-        NMSSHSession *session;
-        NSError *error = nil;
-        NSString *response = [session.channel execute:@"python /home/pi/photobooth/scripts/takePic.py" error:&error];
-        NSLog(@"List of my sites: %@", response);*/
+        //Send command to DSLR camera
+        [self takeDSLRPic:self];
+       
     }
     //3
     else if (seconds ==0 && timerIsRunning == NO) {
