@@ -24,18 +24,18 @@
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="mQ3-at-PmC">
                                 <rect key="frame" x="-28" y="-128" width="823" height="1280"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <state key="normal" title="Done Message" image="Done2.png">
+                                <state key="normal" title="Done Message" image="Done3.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
                             <button hidden="YES" opaque="NO" alpha="0.94999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="mSr-eM-XoK">
                                 <rect key="frame" x="-28" y="-128" width="823" height="1280"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <state key="normal" title="Selfie Message" image="selfie2.png">
+                                <state key="normal" title="Printing Message" image="printingphotos.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="bOG-nT-SNm">
+                            <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="bOG-nT-SNm">
                                 <rect key="frame" x="-28" y="-128" width="823" height="1280"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <state key="normal" title="Look Here" image="lookhere2.png">
@@ -84,7 +84,7 @@
                                 </items>
                             </toolbar>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.75" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3Xm-d4-xit">
-                                <rect key="frame" x="190" y="334" width="386" height="259"/>
+                                <rect key="frame" x="173" y="596" width="386" height="259"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="300"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -101,7 +101,7 @@
                         <outlet property="doneButton" destination="mQ3-at-PmC" id="QGM-bQ-rKh"/>
                         <outlet property="lookButton" destination="bOG-nT-SNm" id="min-mc-eku"/>
                         <outlet property="previewView" destination="hHi-4e-bid" id="ebz-Wb-sxh"/>
-                        <outlet property="selfieButton" destination="mSr-eM-XoK" id="Rhk-Ov-4cV"/>
+                        <outlet property="printButton" destination="mSr-eM-XoK" id="3Df-5E-0k2"/>
                         <outlet property="taptoStartButton" destination="dCA-5l-N9E" id="iSV-wd-jgG"/>
                         <outlet property="timerLabel" destination="3Xm-d4-xit" id="1Jb-Ma-E8K"/>
                     </connections>
@@ -245,10 +245,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Done2.png" width="1024" height="1024"/>
+        <image name="Done3.png" width="1024" height="1024"/>
         <image name="lookhere2.png" width="1024" height="1024"/>
         <image name="photobooth_logo.png" width="374" height="246"/>
-        <image name="selfie2.png" width="1024" height="1024"/>
+        <image name="printingphotos.png" width="1024" height="1024"/>
         <image name="startButton3.png" width="1024" height="1024"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

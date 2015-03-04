@@ -848,7 +848,7 @@ NSInteger featuresCount = [features count], currentFeature = 0;
     [timer invalidate];
     [timerLabel setHidden:TRUE];
     [lookButton setHidden:TRUE];
-    [selfieButton setHidden:TRUE];
+    [printButton setHidden:TRUE];
     [doneButton setHidden:TRUE];
     [taptoStartButton setHidden:FALSE];
     
@@ -951,6 +951,7 @@ NSInteger featuresCount = [features count], currentFeature = 0;
 		[CATransaction commit];
 	}
 }
+/*
 - (void)subtractTime {
     // 1
     seconds--;
@@ -975,9 +976,9 @@ NSInteger featuresCount = [features count], currentFeature = 0;
         
     }
 }
+*/
 
-
-
+/*
 -(IBAction)startTimer:(id)sender
 {
     // [_camerabutton setHidden:TRUE];
@@ -986,11 +987,6 @@ NSInteger featuresCount = [features count], currentFeature = 0;
     
     // 1
     seconds = 3;
-    /*
-     if (seconds == 0)
-     {
-     seconds = 10;
-     }*/
     
     // 2
     timerLabel.text = [NSString stringWithFormat:@"%li", (long)seconds];
@@ -1003,11 +999,12 @@ NSInteger featuresCount = [features count], currentFeature = 0;
                                             repeats:YES];
     
 }
+*/
 
 - (void)endCounter {
     // 1
     seconds--;
-    [doneButton setHidden:FALSE];
+    //[doneButton setHidden:FALSE];
     // 2
     if (seconds == 0) {
         [timer invalidate];
@@ -1051,8 +1048,10 @@ NSInteger featuresCount = [features count], currentFeature = 0;
         timer = nil;
         
         [timerLabel setHidden:TRUE];
-        [selfieButton setHidden:TRUE];
-        [self startTimer:self];
+        
+        [printButton setHidden:TRUE];
+        [doneButton setHidden:FALSE];
+        [self endTimer:self];
         timerIsRunning = NO;
         
     }
@@ -1060,12 +1059,12 @@ NSInteger featuresCount = [features count], currentFeature = 0;
 -(IBAction)simpleTimer2:(id)sender
 {
     // [_camerabutton setHidden:TRUE];
-    [selfieButton setHidden:FALSE];
+    [printButton setHidden:FALSE];
     [timerLabel setHidden:TRUE];
     timerIsRunning = YES;
     
     // 1
-    seconds = 6;
+    seconds = 20;
     
     // 3
     timer = [NSTimer scheduledTimerWithTimeInterval:1.0f
@@ -1103,6 +1102,24 @@ NSInteger featuresCount = [features count], currentFeature = 0;
     seconds--;
     timerLabel.text= [NSString stringWithFormat:@"%li",(long)seconds];
     
+    if (timerIsRunning == YES &&  seconds ==3){
+        
+        [self takePicture:self];
+        
+        
+    }
+    if (timerIsRunning == YES &&  seconds ==2){
+        
+        [self takePicture:self];
+        
+    }
+    if (timerIsRunning == YES &&  seconds ==1){
+        
+       //Take ipad selfie 3
+       [self takePicture:self];
+        
+    }
+    
     // 2
     if (timerIsRunning == YES &&  seconds ==0){
 
@@ -1119,7 +1136,7 @@ NSInteger featuresCount = [features count], currentFeature = 0;
         timer = nil;
         [timerLabel setHidden:TRUE];
         [lookButton setHidden:TRUE];
-        [selfieButton setHidden:FALSE];
+        [printButton setHidden:FALSE];
         timerIsRunning = NO;
         [self simpleTimer2:self];
     }

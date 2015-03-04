@@ -78,7 +78,7 @@
     __weak IBOutlet UIButton *doneButton;
     
     __weak IBOutlet UIButton *taptoStartButton;
-    __weak IBOutlet UIButton *selfieButton;
+    __weak IBOutlet UIButton *printButton;
     
     
 }
