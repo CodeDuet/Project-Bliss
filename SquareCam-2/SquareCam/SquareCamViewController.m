@@ -435,7 +435,7 @@ bail:
            }
        }
      NSError *error = nil;
-     NSNumber* number = [NSNumber numberWithInt:3];
+     NSNumber* number = [NSNumber numberWithInt:4];
      //Do EXTREME PROCESSING!!!
      [session.channel execute:@"python /home/pi/photobooth/scripts/takePic.py" error:&error timeout:number];
 
@@ -951,45 +951,62 @@ NSInteger featuresCount = [features count], currentFeature = 0;
 		[CATransaction commit];
 	}
 }
-/*
+
 - (void)subtractTime {
     // 1
     seconds--;
-    timerLabel.text= [NSString stringWithFormat:@"%li",(long)seconds];
+    //timerLabel.text= [NSString stringWithFormat:@"%li",(long)seconds];
     //NSLog(@"Seconds:@%li",(long)seconds);
-    
+ if (timerIsRunning == YES &&  seconds ==3){
+ 
+ [self takePicture:self];
+ 
+ 
+ }
+ if (timerIsRunning == YES &&  seconds ==2){
+ 
+ [self takePicture:self];
+ 
+ }
+ if (timerIsRunning == YES &&  seconds ==1){
+ 
+ //Take ipad selfie 3
+ [self takePicture:self];
+ 
+ }
     // 2
     if (seconds == 0) {
         [timer invalidate];
         timer = nil;
-        [timerLabel setHidden:TRUE];
-        [self takePicture:self];
-        [self takePicture:self];
+        //[timerLabel setHidden:TRUE];
+        //[self takePicture:self];
+        //[self takePicture:self];
     
         //Show message
         //[self showMessage];
         //[taptoStartButton setHidden:FALSE];
-        
-        [self endTimer:self];
+ 
+        //[self endTimer:self];
         timerIsRunning = NO;
+        [self simpleTimer2:self];
         
         
     }
 }
-*/
 
-/*
--(IBAction)startTimer:(id)sender
+
+
+-(IBAction)startiPadTimer:(id)sender
 {
     // [_camerabutton setHidden:TRUE];
-    [timerLabel setHidden:FALSE];
+    //[timerLabel setHidden:FALSE];
     timerIsRunning = YES;
     
     // 1
-    seconds = 3;
+    seconds = 4;
     
     // 2
-    timerLabel.text = [NSString stringWithFormat:@"%li", (long)seconds];
+    //timerLabel.text = [NSString stringWithFormat:@"%li", (long)seconds];
     
     // 3
     timer = [NSTimer scheduledTimerWithTimeInterval:1.0f
@@ -999,7 +1016,7 @@ NSInteger featuresCount = [features count], currentFeature = 0;
                                             repeats:YES];
     
 }
-*/
+
 
 - (void)endCounter {
     // 1
@@ -1037,6 +1054,8 @@ NSInteger featuresCount = [features count], currentFeature = 0;
 }
 
 - (void)simpleCounter2 {
+    //Printing Screen #2
+    
     // 1
     seconds--;
     
@@ -1058,13 +1077,16 @@ NSInteger featuresCount = [features count], currentFeature = 0;
 }
 -(IBAction)simpleTimer2:(id)sender
 {
+    //Printing Screen #2
+    
     // [_camerabutton setHidden:TRUE];
+    [lookButton setHidden:TRUE];
     [printButton setHidden:FALSE];
     [timerLabel setHidden:TRUE];
     timerIsRunning = YES;
     
     // 1
-    seconds = 20;
+    seconds = 120;
     
     // 3
     timer = [NSTimer scheduledTimerWithTimeInterval:1.0f
@@ -1098,52 +1120,54 @@ NSInteger featuresCount = [features count], currentFeature = 0;
 
 
 - (void)simpleCounter1 {
+    //TAKING 4 PICTURES SCREEN #1
+    
     // 1
     seconds--;
     timerLabel.text= [NSString stringWithFormat:@"%li",(long)seconds];
     
-    if (timerIsRunning == YES &&  seconds ==3){
-        
-        [self takePicture:self];
-        
-        
-    }
-    if (timerIsRunning == YES &&  seconds ==2){
-        
-        [self takePicture:self];
-        
-    }
-    if (timerIsRunning == YES &&  seconds ==1){
-        
-       //Take ipad selfie 3
-       [self takePicture:self];
-        
-    }
-    
+ 
     // 2
     if (timerIsRunning == YES &&  seconds ==0){
 
-        seconds += 6;
+        seconds += 10;
         [timerLabel setHidden:TRUE];
         timerIsRunning = NO;
         //Send command to DSLR camera
         [self takeDSLRPic:self];
        
     }
+    else if (seconds ==8 && timerIsRunning == NO ){
+        
+        [self takePicture:self];
+    }
+    else if (seconds ==6 && timerIsRunning == NO ){
+    
+         [self takePicture:self];
+    }
+    else if (seconds ==4 && timerIsRunning == NO ){
+        
+        [self takePicture:self];
+    }
+    else if (seconds ==2 && timerIsRunning == NO ){
+        
+        [self takePicture:self];
+    }
     //3
     else if (seconds ==0 && timerIsRunning == NO) {
         [timer invalidate];
         timer = nil;
         [timerLabel setHidden:TRUE];
-        [lookButton setHidden:TRUE];
-        [printButton setHidden:FALSE];
         timerIsRunning = NO;
         [self simpleTimer2:self];
+
+        
     }
 }
 
 -(IBAction)simpleTimer1:(id)sender
 {
+    //TAKING 4 PICTURES SCREEN #1
     // [_camerabutton setHidden:TRUE];
     [lookButton setHidden:FALSE];
     [taptoStartButton setHidden:TRUE];
@@ -1152,11 +1176,6 @@ NSInteger featuresCount = [features count], currentFeature = 0;
     
     // 1
     seconds = 5;
-    /*
-     if (seconds == 0)
-     {
-     seconds = 10;
-     }*/
     
     // 2
     timerLabel.text = [NSString stringWithFormat:@"%li", (long)seconds];
@@ -1181,4 +1200,41 @@ NSInteger featuresCount = [features count], currentFeature = 0;
     [self simpleTimer1:self];
     
 }
+
+/*
+-(void)applicationWillResignActive:(UIApplication *)application{
+NSLog(@"Disconnecting! Just became inactive...");
+[session disconnect];
+}
+
+- (void)applicationDidBecomeActive:(UIApplication *)application{
+NSLog(@"Reconnecting! Just became active...");
+    session = [NMSSHSession connectToHost:self.host
+                             withUsername:self.username];
+    
+    [session authenticateByPassword:_password];
+    
+    if (session.isAuthorized) {
+        UIAlertView *alertSuccess = [[UIAlertView alloc] initWithTitle:@"Authentication succeeded!"
+                                                               message:@"Connection was successful."
+                                                              delegate:Nil
+                                                     cancelButtonTitle:@"OK"
+                                                     otherButtonTitles:nil];
+        [alertSuccess show];
+        
+        NSLog (@"Authenticaton Succeeded");
+        
+    }//end if
+    else{
+        UIAlertView *alertError = [[UIAlertView alloc] initWithTitle:@"Error: Authentican Failed"
+                                                             message:@"Check user and password information. Try again."
+                                                            delegate:Nil
+                                                   cancelButtonTitle:@"OK"
+                                                   otherButtonTitles:nil];
+        [alertError show];
+        
+    }
+
+    
+}*/
 @end

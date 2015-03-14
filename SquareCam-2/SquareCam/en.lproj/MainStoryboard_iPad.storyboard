@@ -31,14 +31,14 @@
                             <button hidden="YES" opaque="NO" alpha="0.94999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="mSr-eM-XoK">
                                 <rect key="frame" x="-28" y="-128" width="823" height="1280"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <state key="normal" title="Printing Message" image="printingphotos.png">
+                                <state key="normal" title="Printing Message" image="printingphotos2.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="bOG-nT-SNm">
+                            <button opaque="NO" alpha="0.65000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="bOG-nT-SNm">
                                 <rect key="frame" x="-28" y="-128" width="823" height="1280"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <state key="normal" title="Look Here" image="lookhere2.png">
+                                <state key="normal" title="Look Here" image="lookhere5.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
@@ -246,9 +246,9 @@
     </scenes>
     <resources>
         <image name="Done3.png" width="1024" height="1024"/>
-        <image name="lookhere2.png" width="1024" height="1024"/>
+        <image name="lookhere5.png" width="1024" height="1024"/>
         <image name="photobooth_logo.png" width="374" height="246"/>
-        <image name="printingphotos.png" width="1024" height="1024"/>
+        <image name="printingphotos2.png" width="1024" height="1024"/>
         <image name="startButton3.png" width="1024" height="1024"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

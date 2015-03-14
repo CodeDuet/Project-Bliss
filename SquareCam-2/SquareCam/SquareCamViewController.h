@@ -91,7 +91,8 @@
 - (IBAction)connectToRaspi:(id)sender;
 - (IBAction)takePicture:(id)sender;
 - (IBAction)startWorkflow:(id)sender;
--(IBAction)startTimer:(id)sender;
+-(IBAction)startiPadTimer:(id)sender;
+- (void)subtractTime;
 - (IBAction)switchCameras:(id)sender;
 - (IBAction)handlePinchGesture:(UIGestureRecognizer *)sender;
 - (IBAction)toggleFaceDetection:(id)sender;

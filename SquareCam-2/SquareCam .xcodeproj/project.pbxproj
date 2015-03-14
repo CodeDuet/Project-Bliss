@@ -51,6 +51,9 @@
 		35DA91D51AA54A0600C32600 /* launch1xx.png in Resources */ = {isa = PBXBuildFile; fileRef = 35DA91D11AA54A0600C32600 /* launch1xx.png */; };
 		35DA91D61AA54A0600C32600 /* launch2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 35DA91D21AA54A0600C32600 /* launch2x.png */; };
 		35DA91D71AA54A0600C32600 /* launch2xx.png in Resources */ = {isa = PBXBuildFile; fileRef = 35DA91D31AA54A0600C32600 /* launch2xx.png */; };
+		35DE424D1AACA10D0041425E /* lookhere.png in Resources */ = {isa = PBXBuildFile; fileRef = 35DE424C1AACA10D0041425E /* lookhere.png */; };
+		35DE424F1AACA1490041425E /* printingphotos2.png in Resources */ = {isa = PBXBuildFile; fileRef = 35DE424E1AACA1490041425E /* printingphotos2.png */; };
+		35DE42511AACAB040041425E /* lookhere5.png in Resources */ = {isa = PBXBuildFile; fileRef = 35DE42501AACAB040041425E /* lookhere5.png */; };
 		35FFE7411AA554D000C73BF3 /* printingphotos.png in Resources */ = {isa = PBXBuildFile; fileRef = 35FFE7401AA554D000C73BF3 /* printingphotos.png */; };
 		35FFE7431AA55C3E00C73BF3 /* Done3.png in Resources */ = {isa = PBXBuildFile; fileRef = 35FFE7421AA55C3E00C73BF3 /* Done3.png */; };
 /* End PBXBuildFile section */
@@ -104,6 +107,9 @@
 		35DA91D11AA54A0600C32600 /* launch1xx.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launch1xx.png; sourceTree = SOURCE_ROOT; };
 		35DA91D21AA54A0600C32600 /* launch2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launch2x.png; sourceTree = SOURCE_ROOT; };
 		35DA91D31AA54A0600C32600 /* launch2xx.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launch2xx.png; sourceTree = SOURCE_ROOT; };
+		35DE424C1AACA10D0041425E /* lookhere.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lookhere.png; sourceTree = SOURCE_ROOT; };
+		35DE424E1AACA1490041425E /* printingphotos2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = printingphotos2.png; sourceTree = SOURCE_ROOT; };
+		35DE42501AACAB040041425E /* lookhere5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lookhere5.png; sourceTree = SOURCE_ROOT; };
 		35FFE7401AA554D000C73BF3 /* printingphotos.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = printingphotos.png; sourceTree = SOURCE_ROOT; };
 		35FFE7421AA55C3E00C73BF3 /* Done3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Done3.png; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -194,6 +200,9 @@
 		1B867FE3139D4AD300AD6B47 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				35DE42501AACAB040041425E /* lookhere5.png */,
+				35DE424C1AACA10D0041425E /* lookhere.png */,
+				35DE424E1AACA1490041425E /* printingphotos2.png */,
 				35FFE7421AA55C3E00C73BF3 /* Done3.png */,
 				35FFE7401AA554D000C73BF3 /* printingphotos.png */,
 				35DA91D01AA54A0600C32600 /* launch1x.png */,
@@ -278,6 +287,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				35DA91D41AA54A0600C32600 /* launch1x.png in Resources */,
+				35DE424D1AACA10D0041425E /* lookhere.png in Resources */,
 				3570C78919B17FED005C7D07 /* camerabutton.png in Resources */,
 				1B867FF0139D4AD300AD6B47 /* MainStoryboard_iPhone.storyboard in Resources */,
 				1B867FF3139D4AD300AD6B47 /* MainStoryboard_iPad.storyboard in Resources */,
@@ -292,6 +302,7 @@
 				355BD04B1A99A3DC00F64ADA /* selfie2.png in Resources */,
 				355BD03F1A992C2C00F64ADA /* Done.png in Resources */,
 				2BA4851813F1E6DB000BABB3 /* squarePNG.png in Resources */,
+				35DE424F1AACA1490041425E /* printingphotos2.png in Resources */,
 				35DA91C51AA5457900C32600 /* Images.xcassets in Resources */,
 				35DA91C71AA546BE00C32600 /* launch.png in Resources */,
 				35FFE7411AA554D000C73BF3 /* printingphotos.png in Resources */,
@@ -300,6 +311,7 @@
 				355BD0471A99A2F700F64ADA /* startButton3.png in Resources */,
 				35FFE7431AA55C3E00C73BF3 /* Done3.png in Resources */,
 				35DA91CE1AA549ED00C32600 /* icon76x76.png in Resources */,
+				35DE42511AACAB040041425E /* lookhere5.png in Resources */,
 				2BA4851A13F1EC39000BABB3 /* ReadMe.txt in Resources */,
 				35DA91D51AA54A0600C32600 /* launch1xx.png in Resources */,
 				2B0EF004170E3E3A008EDA06 /* Default-568h@2x.png in Resources */,
