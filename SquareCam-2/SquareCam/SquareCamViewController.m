@@ -1086,7 +1086,7 @@ NSInteger featuresCount = [features count], currentFeature = 0;
     timerIsRunning = YES;
     
     // 1
-    seconds = 120;
+    seconds = 30;
     
     // 3
     timer = [NSTimer scheduledTimerWithTimeInterval:1.0f
@@ -1120,7 +1120,7 @@ NSInteger featuresCount = [features count], currentFeature = 0;
 
 
 - (void)simpleCounter1 {
-    //TAKING 4 PICTURES SCREEN #1
+    //TAKING 3 PICTURES SCREEN #1 - iPAd and DSLR pics taken
     
     // 1
     seconds--;
@@ -1130,16 +1130,12 @@ NSInteger featuresCount = [features count], currentFeature = 0;
     // 2
     if (timerIsRunning == YES &&  seconds ==0){
 
-        seconds += 10;
+        seconds += 7;
         [timerLabel setHidden:TRUE];
         timerIsRunning = NO;
         //Send command to DSLR camera
         [self takeDSLRPic:self];
        
-    }
-    else if (seconds ==8 && timerIsRunning == NO ){
-        
-        [self takePicture:self];
     }
     else if (seconds ==6 && timerIsRunning == NO ){
     

@@ -21,7 +21,6 @@
       "idiom" : "ipad",
       "extent" : "full-screen",
       "minimum-system-version" : "7.0",
-      "filename" : "launch1xx.png",
       "scale" : "1x"
     },
     {
@@ -69,7 +68,6 @@
       "orientation" : "portrait",
       "idiom" : "ipad",
       "extent" : "to-status-bar",
-      "filename" : "launch1x.png",
       "scale" : "1x"
     },
     {
